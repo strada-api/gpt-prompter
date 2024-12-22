@@ -1,13 +1,12 @@
 import { Command } from 'commander';
+import { generate } from './generate';
 const program = new Command();
 
-program.name('mycli').description('My custom CLI tool').version('1.0.0');
+program.name('prompter').description('Prompt generation tool').version('1.0.0');
 
 program
-  .command('greet <name>')
-  .description('Greets a user')
-  .action((name) => {
-    console.log(`Hello, world ${name}!`);
-  });
+  .command('generate')
+  .description('Generate prompts for the project')
+  .action(generate);
 
 program.parse();
