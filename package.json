@@ -1,6 +1,6 @@
 {
   "name": "gpt-prompter",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "Developer utilities for prompt engineering",
   "keywords": [
     "gpt",
