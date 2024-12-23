@@ -6,19 +6,20 @@ export const generate = async () => {
   const cwd = process.cwd();
   console.log('Generating prompts for the project');
   try {
+    // Develop the project src path
     const configPath = path.join(cwd, 'gpt-prompter.config.json');
     const configContent = await fs.promises.readFile(configPath, 'utf-8');
     const config = JSON.parse(configContent) as Config;
     const projectSrc = config.projectSrc;
-    console.log(`Project source: ${projectSrc}`);
 
+    // Find all .pmd files in the project src path
     const projectSrcPath = path.join(cwd, projectSrc);
     const files = await fs.promises.readdir(projectSrcPath, {
       recursive: true,
     });
-
     const pmdFiles = files.filter((file) => file.endsWith('.pmd'));
 
+    // Create prompts for all .pmd files
     const prompts: any = {};
     for (const file of pmdFiles) {
       const fileName = path.basename(file);
@@ -33,7 +34,7 @@ export const generate = async () => {
 export const gptPrompts = ${JSON.stringify(prompts, null, 2)} as const;
 
 // Type definition for the prompts
-export type GPTPrompts = typeof gptPrompts;
+export type GptPrompts = typeof gptPrompts;
 `;
 
     // Write the file
