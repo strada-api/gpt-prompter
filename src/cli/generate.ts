@@ -20,12 +20,16 @@ export const generate = async () => {
     });
 
     const pmdFiles = files.filter((file) => file.endsWith('.pmd'));
+
+    const prompts: any = {};
     for (const file of pmdFiles) {
+      const fileName = path.basename(file);
       const filePath = path.join(projectSrcPath, file);
       const content = await fs.promises.readFile(filePath, 'utf-8');
-      console.log(`\n=== Contents of ${file} ===`);
-      console.log(content);
+      prompts[fileName.replace('.pmd', '')] = content;
     }
+
+    console.log(prompts);
   } catch (error: any) {
     console.error('Error reading config file:', error.message);
     throw new Error('Failed to read gpt-prompter.config.json');
