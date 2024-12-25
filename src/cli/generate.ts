@@ -33,8 +33,13 @@ export const generate = async () => {
 
 export const gptPrompts = ${JSON.stringify(prompts, null, 2)} as const;
 
+// Type local
+type GptPromptsLocal = typeof gptPrompts;
+
 // Type definition for the prompts
-export type GptPrompts = typeof gptPrompts;
+declare module 'gpt-prompter' {
+  interface GptPrompts extends GptPromptsLocal {}
+}
 `;
 
     // Write the file
