@@ -1,5 +1,6 @@
-export const testAdd = (a: number, b: number) => {
-  return a * b;
-};
+// Export utils
+export * from './utils';
 
+// Export types
 export * from './cli/types';
+export * from './utils/types';
