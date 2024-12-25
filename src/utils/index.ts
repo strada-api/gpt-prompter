@@ -1,1 +1,1 @@
-export * from './log-hello';
+export { getPrompt } from './get-prompt';
