@@ -40,7 +40,10 @@ export const generate = async () => {
 
 // This file is auto-generated. Do not edit directly.
 
-export const gptPrompts = ${JSON.stringify(prompts, null, 2)} as const;
+import { getPromptFactory } from 'gpt-prompter';
+
+
+const gptPrompts = ${JSON.stringify(prompts, null, 2)} as const;
 
 // Type local
 type GptPromptsLocal = typeof gptPrompts;
@@ -50,6 +53,8 @@ declare module 'gpt-prompter' {
   interface GptPrompts extends GptPromptsLocal {}
 }
 
+// Export utilities
+export const getPrompt = getPromptFactory(gptPrompts);
 /* prettier-ignore-end */
 `;
 

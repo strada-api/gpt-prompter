@@ -1,5 +1,9 @@
-import { rootObject } from './constants';
+import type { GptPrompts } from './types';
 
-export const getPrompt = (promptName: string) => {
-  return rootObject.gptPrompts[promptName];
+export const getPromptFactory = <TPrompts extends GptPrompts>(
+  gptPrompts: TPrompts,
+) => {
+  return (promptName: keyof TPrompts) => {
+    return gptPrompts[promptName];
+  };
 };
