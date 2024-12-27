@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import type { GptPrompts } from '../types';
 import type { Config } from './types';
+import { getPromptVariables } from './utils/get-prompt-variables';
 
 export const generate = async () => {
   const cwd = process.cwd();
@@ -25,8 +26,12 @@ export const generate = async () => {
     for (const file of pmdFiles) {
       const fileName = path.basename(file);
       const filePath = path.join(projectSrcPath, file);
+      const promptName = fileName.replace('.pmd', '');
       const content = await fs.promises.readFile(filePath, 'utf-8');
-      prompts[fileName.replace('.pmd', '')] = content;
+      prompts[promptName] = {
+        prompt: content,
+        variables: getPromptVariables(content),
+      };
     }
 
     // Generate TypeScript file content
