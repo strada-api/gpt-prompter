@@ -1,4 +1,4 @@
-import type { GptPrompts } from './types';
+import type { GptPrompts } from '../types';
 
 export const getPromptFactory = <TPrompts extends GptPrompts>(
   gptPrompts: TPrompts,

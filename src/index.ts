@@ -3,4 +3,4 @@ export * from './utils';
 
 // Export types
 export * from './cli/types';
-export * from './utils/types';
+export * from './types';

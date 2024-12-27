@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import type { GptPrompts } from '../types';
 import type { Config } from './types';
 
 export const generate = async () => {
@@ -20,7 +21,7 @@ export const generate = async () => {
     const pmdFiles = files.filter((file) => file.endsWith('.pmd'));
 
     // Create prompts for all .pmd files
-    const prompts: any = {};
+    const prompts: GptPrompts = {};
     for (const file of pmdFiles) {
       const fileName = path.basename(file);
       const filePath = path.join(projectSrcPath, file);
