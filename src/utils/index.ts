@@ -1,1 +1,1 @@
-export { getPrompt } from './get-prompt';
+export { getPromptFactory } from './get-prompt-factory';
