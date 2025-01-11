@@ -3,9 +3,14 @@ import type { GptPrompts } from '../types';
 export const getPromptFactory = <TPrompts extends GptPrompts>(
   gptPrompts: TPrompts,
 ) => {
-  return <TPromptName extends string & keyof TPrompts>(
+  return <
+    TPromptName extends string & keyof TPrompts,
+    TVariables extends TPrompts[TPromptName]['variables'][number],
+  >(
     promptName: TPromptName,
-    variableValues: Record<TPrompts[TPromptName]['variables'][number], string>,
+    variableValues?: TVariables extends never
+      ? never
+      : Record<TVariables, string>,
   ) => {
     const gptPrompt = gptPrompts[promptName];
     if (!gptPrompt) {
