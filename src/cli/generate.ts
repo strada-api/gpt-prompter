@@ -49,18 +49,8 @@ export const generate = async () => {
 import { getPromptFactory } from 'gpt-prompter';
 
 
-const gptPrompts = ${JSON.stringify(prompts, null, 2)} as const;
-
-// Type local
-type GptPromptsLocal = typeof gptPrompts;
-
-// Type definition for the prompts
-declare module 'gpt-prompter' {
-  interface GptPrompts extends GptPromptsLocal {}
-}
-
 // Export utilities
-export const getPrompt = getPromptFactory(gptPrompts);
+export const getPrompt = getPromptFactory(${JSON.stringify(prompts, null, 2)} as const);
 /* prettier-ignore-end */
 `;
 
