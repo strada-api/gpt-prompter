@@ -20,7 +20,7 @@ yarn add gpt-prompter
 
 ## Usage
 
-1. Add `gpt-prompter.config.json` to your project root
+### 1. Add `gpt-prompter.config.json` to your project root
 
 In this file specify the source directory for your projects code.
 
@@ -30,4 +30,53 @@ Example: if your project is in `./src` then your `gpt-prompter.config.json` shou
 {
   "projectSrc": "./src"
 }
+```
+
+### 2. Create prompt files
+
+Now you can create prompt files in anywhere in your `projectSrc` directory.
+Prompt files should have `.pmd` extension.
+Prompt markdown (pmd) files are just plain markdown files with some special syntax for prompting.
+You can add variables to your prompts by using the `{{variable}}` syntax.
+The variables you add can be used in types-safe manner in your code.
+
+### 3. Generate prompts
+
+You can generate prompts by running following command:
+
+```shell
+npm run prompter generate
+```
+
+```shell
+pnpm prompter generate
+```
+
+```shell
+yarn prompter generate
+```
+
+This will create a file `gptPrompts.gen.ts` in your `projectSrc` directory.
+
+### 4. import prompts
+
+Now you can import prompts in your code by using the `getPrompt` from `gptPrompts.gen.ts` file.
+`getPrompt` function takes prompt name as an argument and returns the prompt as a string.
+
+Example:
+
+```ts
+import { getPrompt } from './gptPrompts.gen';
+
+const prompt = getPrompt('myPrompt');
+```
+
+If your prompt has variables, you can supply them to the `getPrompt` function.
+
+Example:
+
+```ts
+import { getPrompt } from './gptPrompts.gen';
+
+const prompt = getPrompt('myPrompt', { variable: 'value' });
 ```
