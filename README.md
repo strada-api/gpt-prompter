@@ -34,7 +34,7 @@ Example: if your project is in `./src` then your `gpt-prompter.config.json` shou
 
 ### 2. Create prompt files
 
-Now you can create prompt files in anywhere in your `projectSrc` directory.
+Now you can create prompt files anywhere in your `projectSrc` directory.
 Prompt files should have `.pmd` extension.
 
 Prompt markdown (pmd) files are just plain markdown files with some special syntax for prompting.
