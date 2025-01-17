@@ -53,6 +53,7 @@ npm run prompter generate
 or equivalent `pnpm` or `yarn` command.
 
 This will create a file `gptPrompts.gen.ts` in your `projectSrc` directory.
+`gptPrompts.gen.ts` file should be committed to your repository.
 
 ### 4. Import prompts
 
